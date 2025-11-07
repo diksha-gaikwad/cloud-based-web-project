@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Model Info Website</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #c3e0f9 0%, #f9f9ff 100%);
+      color: #1a1a2e;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    /* Navbar */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li { margin-left: 25px; }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #ffda79;
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #ffda79;
+      transform: scale(1.1);
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle div {
+      width: 28px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #2575fc, #6a11cb);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(37, 117, 252, 0.4);
+    }
+
+    /* Sections */
+    main {
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section {
+      margin: 70px 0;
+      background: white;
+      border-radius: 15px;
+      padding: 60px 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.3s; }
+    section:nth-child(2) { animation-delay: 0.6s; }
+    section:nth-child(3) { animation-delay: 0.9s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      color: #2575fc;
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.6;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    ul {
+      text-align: left;
+      max-width: 700px;
+      margin: 25px auto;
+      padding-left: 0;
+    }
+
+    ul li {
+      list-style: none;
+      padding: 14px 18px;
+      border-left: 5px solid #2575fc;
+      margin-bottom: 12px;
+      background-color:rgba(63, 9, 212, 0.17);
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    ul li:hover {
+      background-color:rgba(16, 74, 129, 0.11);
+    }
+
+    /* Scroll to Top */
+    #scrollTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: #fff;
+      padding: 12px 15px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+      display: none;
+      transition: all 0.3s ease;
+    }
+
+    #scrollTop:hover {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #2575fc, #6a11cb);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      font-size: 1rem;
+      margin-top: 60px;
+    }
+
+    footer strong {
+      color: #ffda79;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background:rgb(116, 9, 231);
+      }
+      nav ul.show { display: flex; }
+      nav ul li { text-align: center; margin: 15px 0; }
+      .menu-toggle { display: flex; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>☁ Cloud Model Info</h1>
+    <div class="menu-toggle" id="menu-toggle">
+      <div></div><div></div><div></div>
+    </div>
+    <nav>
+      <ul id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+      <h2>Welcome to Cloud Model Information</h2>
+      <p>
+        The <strong>Cloud Model Info Website</strong> is a simple, static, responsive, and informative web project
+        developed using <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong>. 
+        It provides insights into major cloud computing models — <b>IaaS</b>, <b>PaaS</b>, and <b>SaaS</b> — 
+        and shows how cloud technologies empower innovation and scalability.
+      </p>
+      <a href="#about" class="btn">Learn More</a>
+    </section>
+
+    <section id="about">
+      <h2>About Cloud Models</h2>
+      <p>Cloud computing offers different service models for flexibility, scalability, and control:</p>
+      <ul>
+        <li><strong>IaaS (Infrastructure as a Service):</strong> Virtual servers, storage, and networking resources.</li>
+        <li><strong>PaaS (Platform as a Service):</strong> Development and deployment platforms with built-in tools.</li>
+        <li><strong>SaaS (Software as a Service):</strong> Fully managed software delivered over the internet.</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Have questions or suggestions? Get in touch with me:  
+        <br /><br />
+        <strong>Diksha Gaikwad</strong><br />
+        📧 <a href="mailto:example@email.com" class="btn">Send Email</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Cloud Model Info | Designed by <strong>Diksha Gaikwad</strong></p>
+  </footer>
+
+  <!-- Scroll to top button -->
+  <button id="scrollTop">↑</button>
+
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+    const scrollTopBtn = document.getElementById("scrollTop");
+
+    menuToggle.addEventListener("click", () => {
+      menu.classList.toggle("show");
+    });
+
+    // Scroll-to-top button
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    });
+
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
